@@ -1,0 +1,354 @@
+{
+  "swagger": 2,
+  "info": {
+    "version": "0.8",
+    "title": "ASB"
+  },
+  "host": "demo-ap04-test.apigee.net",
+  "basePath": "/asb/v1",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/payment": {
+      "get": {
+        "description": "Get Payment Details",
+        "parameters": [
+          {
+            "name": "PaymentServiceProviderID",
+            "in": "query",
+            "description": "Payment Service Provider ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "PaymentServiceProviderPaymentID",
+            "in": "query",
+            "description": "Provider Payment ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ASBPaymentID",
+            "in": "query",
+            "description": "ASB Payment ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "Envelope": {
+                "type": "array",
+                "Body": {
+                  "type": "array",
+                  "GetPaymentDetailsResponse": {
+                    "type": "array",
+                    "ASBPaymentID": {
+                      "type": "string"
+                    },
+                    "PaymentStatus": {
+                      "type": "string"
+                    },
+                    "PaymentDetails": {
+                      "type": "array",
+                      "InitateTime": {
+                        "type": "string"
+                      },
+                      "Amount": {
+                        "type": "string"
+                      },
+                      "Currency": {
+                        "type": "string"
+                      },
+                      "PayerParticulars": {
+                        "type": "string"
+                      },
+                      "PayerCode": {
+                        "type": "string"
+                      },
+                      "PayerReference": {
+                        "type": "string"
+                      },
+                      "PayeeParticulars": {
+                        "type": "string"
+                      },
+                      "PayeeCode": {
+                        "type": "string"
+                      },
+                      "PayeeReference": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Initiate Payment",
+        "parameters": [
+          {
+            "name": "JSON Payload",
+            "in": "body",
+            "required": true,
+            "description": "JSON Payload",
+            "schema": {
+              "PaymentServiceProviderID": {
+                "type": "string"
+              },
+              "PaymentServiceProviderPaymentID": {
+                "type": "string"
+              },
+              "PayerID": {
+                "type": "string"
+              },
+              "MerchantDetails": {
+                "type": "array",
+                "MerchantID": {
+                  "type": "string"
+                },
+                "MerchantDisplayName": {
+                  "type": "string"
+                },
+                "MerchantAccountName": {
+                  "type": "string"
+                }
+              },
+              "PaymentDetails": {
+                "type": "array",
+                "InitateTime": {
+                  "type": "string"
+                },
+                "Amount": {
+                  "type": "string"
+                },
+                "Currency": {
+                  "type": "string"
+                },
+                "PayerParticulars": {
+                  "type": "string"
+                },
+                "PayerCode": {
+                  "type": "string"
+                },
+                "PayerReference": {
+                  "type": "string"
+                },
+                "PayeeParticulars": {
+                  "type": "string"
+                },
+                "PayeeCode": {
+                  "type": "string"
+                },
+                "PayeeReference": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "Envelope": {
+                "type": "array",
+                "Body": {
+                  "type": "array",
+                  "InitiatePaymentResponse": {
+                    "type": "array",
+                    "ASBPaymentID": {
+                      "type": "string"
+                    },
+                    "ErrorInfo": {
+                      "type": "array",
+                      "Severity": {
+                        "type": "string"
+                      },
+                      "Code": {
+                        "type": "string"
+                      },
+                      "Description": {
+                        "type": "array"
+                      },
+                      "ProductSystemId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Refund Payment",
+        "parameters": [
+          {
+            "name": "JSON Payload",
+            "in": "body",
+            "description": "JSON Payload",
+            "required": true,
+            "schema": {
+              "PaymentServiceProviderID": {
+                "type": "string"
+              },
+              "PaymentServiceProviderPaymentID": {
+                "type": "string"
+              },
+              "OriginalPaymentServiceProviderPaymentID": {
+                "type": "string"
+              },
+              "OriginalASBPaymentID": {
+                "type": "string"
+              },
+              "ReasonForRefund": {
+                "type": "string"
+              },
+              "PaymentDetails": {
+                "type": "array",
+                "InitateTime": {
+                  "type": "string"
+                },
+                "Amount": {
+                  "type": "string"
+                },
+                "Currency": {
+                  "type": "string"
+                },
+                "PayerParticulars": {
+                  "type": "string"
+                },
+                "PayerCode": {
+                  "type": "string"
+                },
+                "PayerReference": {
+                  "type": "string"
+                },
+                "PayeeParticulars": {
+                  "type": "string"
+                },
+                "PayeeCode": {
+                  "type": "string"
+                },
+                "PayeeReference": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "Envelope": {
+                "type": "array",
+                "Body": {
+                  "type": "array",
+                  "RefundPaymentResponse": {
+                    "type": "array",
+                    "ASBPaymentID": {
+                      "type": "string"
+                    },
+                    "ErrorInfo": {
+                      "type": "array",
+                      "Severity": {
+                        "type": "string"
+                      },
+                      "Code": {
+                        "type": "string"
+                      },
+                      "Description": {
+                        "type": "array"
+                      },
+                      "ProductSystemId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "Cancel Payment",
+        "parameters": [
+          {
+            "name": "PaymentServiceProviderID",
+            "in": "query",
+            "description": "Payment Service Provider ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "PaymentServiceProviderPaymentID",
+            "in": "query",
+            "description": "Provider Payment ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "ASBPaymentID",
+            "in": "query",
+            "description": "ASB Payment ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "Envelope": {
+                "type": "array",
+                "Body": {
+                  "type": "array",
+                  "CancelPaymentResponse": {
+                    "type": "array",
+                    "ASBPaymentID": {
+                      "type": "string"
+                    },
+                    "PaymentStatus": {
+                      "type": "string"
+                    },
+                    "ErrorInfo": {
+                      "type": "array",
+                      "Severity": {
+                        "type": "string"
+                      },
+                      "Code": {
+                        "type": "string"
+                      },
+                      "Description": {
+                        "type": "array"
+                      },
+                      "ProductSystemId": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
